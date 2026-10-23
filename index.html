@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proper: a venture concept for Diagram</title>
+<meta name="description" content="A FinTech venture concept by Abdullah Al Mneni for Diagram's Summer 2027 Venture Creation application. Fictional company, synthetic data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #000; --ink-soft: #171717; --muted: #525252; --canvas: #fff; --warm: #edeceb;
+  --line: #d9d9d9; --peri-pale: #dfe5ff; --peri: #939bda; --orange: #ff5900; --oxblood: #9b3a3c;
+  --ok: #1d6b45; --display: Ubuntu, Inter, system-ui, sans-serif; --body: Roboto, Inter, system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--canvas); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; letter-spacing: -0.01em; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: -0.03em; margin: 0; }
+h1 { font-size: clamp(34px, 5.2vw, 64px); line-height: 1.08; }
+h2 { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.1; }
+h3 { font-size: 22px; line-height: 1.2; }
+p { margin: 0 0 12px; }
+.wrap { max-width: 1240px; margin: 0 auto; }
+.banner { background: var(--peri-pale); font-size: 13px; padding: 9px 24px; border-bottom: 1px solid var(--line); }
+.banner b { font-weight: 700; }
+nav.top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: #fff; z-index: 10; }
+.brand { font-family: var(--display); font-size: 26px; letter-spacing: -0.03em; padding: 12px 24px; border-right: 1px solid var(--line); text-decoration: none; }
+.brand small { font-family: var(--body); font-size: 11px; color: var(--muted); letter-spacing: 0; margin-left: 6px; }
+.navlinks { display: flex; gap: 22px; padding: 0 24px; font-size: 15px; font-weight: 500; }
+.navlinks a { text-decoration: none; color: var(--ink-soft); }
+.navlinks a:hover { text-decoration: underline; }
+.btn { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--ink); padding: 11px 18px; font-size: 15px; text-decoration: none; background: #fff; color: var(--ink); cursor: pointer; font-family: var(--body); }
+.btn:hover { background: var(--ink); color: #fff; }
+.btn.solid { background: var(--ink); color: #fff; }
+.btn.solid:hover { background: #333; }
+.btn .arr { font-size: 17px; line-height: 1; }
+section { border-bottom: 1px solid var(--line); }
+.hero { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 520px; }
+.hero .copy { padding: 64px 48px 56px 24px; display: flex; flex-direction: column; justify-content: center; gap: 22px; border-right: 1px solid var(--line); }
+.hero .lede { font-size: 19px; color: var(--ink-soft); max-width: 560px; }
+.hero .art { position: relative; overflow: hidden; background: #fff; }
+.hero .art svg { width: 100%; height: 100%; display: block; }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.statement { background: var(--warm); padding: 56px 24px; }
+.statement h2 { max-width: 1050px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); }
+.cell { padding: 28px 24px 26px; border-right: 1px solid var(--line); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; }
+.cell:last-child { border-right: 0; }
+.stat { font-family: var(--display); font-size: clamp(44px, 5vw, 68px); letter-spacing: -0.04em; line-height: 1; }
+.stat.hot { color: var(--orange); }
+.cell p { font-size: 14px; color: var(--ink-soft); margin: 18px 0 0; }
+.src { font-size: 12px; color: var(--muted); }
+.split { display: grid; grid-template-columns: 1fr 1fr; }
+.split > div { padding: 56px 24px; }
+.split > div + div { border-left: 1px solid var(--line); }
+.eyebrow { font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 14px; }
+label { display: block; font-size: 13px; font-weight: 500; margin: 0 0 6px; }
+input[type=date], input[type=number] { font: inherit; padding: 10px 12px; border: 1px solid var(--ink); border-radius: 0; width: 100%; background: #fff; }
+.form { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 22px 0 26px; }
+.clock { border: 1px solid var(--line); padding: 20px; }
+.clockbar { position: relative; height: 12px; background: var(--peri-pale); margin: 34px 0 52px; }
+.clockbar .seg { position: absolute; top: 0; height: 12px; }
+.mk { position: absolute; top: -6px; width: 2px; height: 24px; background: var(--ink); }
+.mk span { position: absolute; top: 28px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 12px; }
+.mk.up span { top: -22px; }
+.mk.pay { background: var(--orange); width: 6px; }
+.mk.pay span { color: var(--orange); font-weight: 700; top: 46px; }
+.mk.pay.up span { top: 46px; }
+.mk span.l { left: 0; transform: none; }
+.mk span.r { left: auto; right: 0; transform: none; }
+.clockbar { margin-bottom: 70px; }
+.verdict { font-family: var(--display); font-size: 22px; letter-spacing: -0.02em; }
+.verdict.bad { color: var(--orange); }
+.fine { font-size: 12px; color: var(--muted); margin-top: 12px; }
+.dark { background: var(--ink-soft); color: #fff; padding: 64px 24px; }
+.dark .eyebrow { color: #a3a3a3; }
+.app { background: #fff; color: var(--ink); margin-top: 30px; display: grid; grid-template-columns: 260px 1fr; min-height: 520px; }
+.steps { border-right: 1px solid var(--line); padding: 18px 0; }
+.steps .co { padding: 4px 20px 16px; border-bottom: 1px solid var(--line); margin-bottom: 8px; font-size: 13px; color: var(--muted); }
+.steps .co b { display: block; color: var(--ink); font-size: 15px; font-weight: 500; }
+.step { display: flex; gap: 12px; width: 100%; text-align: left; padding: 12px 20px; border: 0; background: none; font: inherit; font-size: 15px; cursor: pointer; color: var(--ink-soft); }
+.step .n { width: 24px; height: 24px; border: 1px solid var(--ink); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex: none; }
+.step[aria-selected=true] { background: var(--peri-pale); color: var(--ink); }
+.step[aria-selected=true] .n { background: var(--ink); color: #fff; }
+.pane { padding: 28px 30px; display: none; }
+.pane.on { display: block; }
+.big { font-family: var(--display); font-size: 48px; letter-spacing: -0.04em; line-height: 1; }
+.kv { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); margin: 20px 0; }
+.kv > div { padding: 16px; border-right: 1px solid var(--line); }
+.kv > div:last-child { border-right: 0; }
+.kv .k { font-size: 13px; color: var(--muted); }
+.kv .v { font-family: var(--display); font-size: 28px; letter-spacing: -0.03em; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 10px; border-bottom: 1px solid var(--ink); }
+td { padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.amt { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tag { display: inline-block; font-size: 12px; padding: 2px 8px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.hot { color: var(--orange); }
+.tag.ok { color: var(--ok); }
+.tag.dim { color: var(--muted); }
+.actions { display: grid; gap: 12px; margin-top: 16px; }
+.act { border: 1px solid var(--line); padding: 16px 18px; display: grid; grid-template-columns: 26px 1fr; gap: 12px; cursor: pointer; }
+.act:hover { border-color: var(--ink); }
+.act input { width: 18px; height: 18px; margin-top: 3px; accent-color: #000; }
+.act .t { font-weight: 500; }
+.act .d { font-size: 14px; color: var(--ink-soft); }
+.draft { font-size: 13px; background: var(--warm); padding: 10px 12px; margin-top: 8px; border-left: 3px solid var(--peri); }
+.result { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 6px 0 4px; }
+.navrow { display: flex; justify-content: space-between; margin-top: 24px; gap: 12px; }
+.chart { width: 100%; height: auto; border: 1px solid var(--line); margin-top: 14px; }
+.seg3 { display: inline-flex; border: 1px solid var(--ink); }
+.seg3 button { font: inherit; font-size: 14px; padding: 8px 16px; border: 0; background: #fff; cursor: pointer; }
+.seg3 button + button { border-left: 1px solid var(--ink); }
+.seg3 button[aria-pressed=true] { background: var(--ink); color: #fff; }
+.funnel { margin-top: 26px; }
+.frow { display: grid; grid-template-columns: 210px 1fr 110px; align-items: center; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.fbar { height: 18px; background: var(--peri); transition: width .35s ease; }
+.frow.key .fbar { background: var(--orange); }
+.frow .val { text-align: right; font-family: var(--display); font-size: 20px; letter-spacing: -0.02em; }
+.comp { display: grid; grid-template-columns: repeat(3, 1fr); }
+.comp .cell { min-height: 0; justify-content: flex-start; gap: 8px; border-bottom: 1px solid var(--line); }
+.comp .cell:nth-child(3n) { border-right: 0; }
+.comp .who { font-family: var(--display); font-size: 24px; letter-spacing: -0.02em; }
+.comp .meta { font-size: 13px; color: var(--muted); }
+.comp .cell p { margin: 0; font-size: 14px; }
+.gap { font-size: 14px; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 4px; }
+ul.clean { padding-left: 18px; margin: 10px 0 0; }
+ul.clean li { margin-bottom: 8px; }
+footer { padding: 40px 24px 60px; font-size: 13px; color: var(--muted); }
+footer .who { color: var(--ink); font-size: 15px; margin-bottom: 8px; }
+footer ol { padding-left: 18px; columns: 2; column-gap: 32px; }
+footer li { margin-bottom: 4px; break-inside: avoid; }
+@media (max-width: 900px) {
+  .hero, .split, .app { grid-template-columns: 1fr; }
+  .hero .copy { border-right: 0; border-bottom: 1px solid var(--line); padding: 40px 16px; }
+  .hero .art { min-height: 260px; }
+  .grid4 { grid-template-columns: 1fr 1fr; }
+  .cell:nth-child(2) { border-right: 0; }
+  .cell:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .split > div { padding: 40px 16px; }
+  .split > div + div { border-left: 0; border-top: 1px solid var(--line); }
+  .navlinks { display: none; }
+  .steps { border-right: 0; border-bottom: 1px solid var(--line); display: flex; overflow-x: auto; padding: 0; }
+  .steps .co { display: none; }
+  .step { white-space: nowrap; padding: 12px 14px; }
+  .pane { padding: 22px 16px; }
+  .comp { grid-template-columns: 1fr; }
+  .comp .cell { border-right: 0; }
+  .statement, .dark { padding: 40px 16px; }
+  .banner, footer { padding-left: 16px; padding-right: 16px; }
+  .frow { grid-template-columns: 1fr 90px; }
+  .frow .fbar { grid-column: 1 / -1; grid-row: 2; }
+  .form { grid-template-columns: 1fr; }
+  footer ol { columns: 1; }
+}
+@media (max-width: 640px) {
+  .pane table, .pane tbody, .pane tr, .pane td { display: block; width: 100%; }
+  .pane thead { display: none; }
+  .pane tr { border-bottom: 1px solid var(--line); padding: 12px 0; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; }
+  .pane td { border: 0; padding: 0; }
+  .pane td:first-child { grid-column: 1; }
+  .pane td.amt { grid-column: 2; grid-row: 1; font-weight: 700; }
+  .pane td:nth-child(2), .pane td:nth-child(3) { grid-column: 1 / -1; }
+  .mk span { font-size: 11px; }
+}
+@media (max-width: 560px) {
+  .grid4 { grid-template-columns: 1fr; }
+  .cell { border-right: 0 !important; border-bottom: 1px solid var(--line); min-height: 0; }
+  .kv { grid-template-columns: 1fr; }
+  .kv > div { border-right: 0; border-bottom: 1px solid var(--line); }
+  table { font-size: 13px; }
+  .brand { border-right: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="banner">A venture concept by <b>Abdullah Al Mneni</b> for Diagram's Summer 2027 Venture Creation application. Proper is a working name, the contractor in the prototype is fictional, and all product data is synthetic. Not affiliated with or endorsed by Diagram.</div>
+
+<nav class="top" aria-label="Page">
+  <a class="brand" href="#top">Proper<small>working name</small></a>
+  <div class="navlinks">
+    <a href="#problem">Problem</a><a href="#clock">The clock</a><a href="#prototype">Prototype</a><a href="#market">Market</a><a href="#competition">Competition</a><a href="#validation">Validation</a>
+  </div>
+</nav>
+
+<main id="top">
+<section class="hero">
+  <div class="copy">
+    <div class="eyebrow">FinTech thesis · Canadian construction payments</div>
+    <h1>Canada put a legal clock on construction payments. Trade contractors still can't see it.</h1>
+    <p class="lede">Proper would tell an electrical or mechanical contractor when each invoice is legally due, which one protects the next payroll, and what to do when it's late. Later, it could pay them early on invoices the law has already made payable.</p>
+    <div class="ctas">
+      <a class="btn solid" href="#prototype">Try the prototype <span class="arr">→</span></a>
+      <a class="btn" href="Diagram_Venture_Thematic_Analysis.pdf">Read the 2-page memo <span class="arr">→</span></a>
+    </div>
+  </div>
+  <div class="art" aria-hidden="true">
+    <svg viewBox="0 0 600 520" preserveAspectRatio="xMidYMid meet">
+      <rect width="600" height="520" fill="#fff"/>
+      <path d="M600 0 V200 C540 215 505 175 505 118 C505 62 545 22 600 0Z" fill="#dfe5ff"/>
+      <path d="M600 520 H462 A138 138 0 0 1 600 382Z" fill="#000"/>
+      <circle cx="562" cy="300" r="34" fill="#edeceb"/>
+      <circle cx="322" cy="262" r="178" fill="#edeceb"/>
+      <path d="M322 262 L322 84 A178 178 0 1 1 152.7 317.0 Z" fill="#939bda"/>
+      <path d="M322 262 L152.7 317.0 A178 178 0 0 1 196.1 136.1 Z" fill="#9b3a3c"/>
+      <path d="M322 262 L256.5 96.5 A178 178 0 0 1 288.6 87.2 Z" fill="#ff5900"/>
+      <circle cx="322" cy="262" r="92" fill="#fff"/>
+      <line x1="322" y1="262" x2="245.4" y2="223.0" stroke="#000" stroke-width="7" stroke-linecap="square"/>
+      <line x1="322" y1="262" x2="411.0" y2="326.7" stroke="#000" stroke-width="4" stroke-linecap="square"/>
+      <circle cx="322" cy="262" r="9" fill="#000"/>
+      <g font-family="Ubuntu, sans-serif" font-size="16" fill="#000">
+        <text x="328.0" y="68.0">day 0, invoice in</text>
+        <text x="127.80000000000001" y="323.8" text-anchor="end">day 28</text>
+        <text x="127.80000000000001" y="342.8" text-anchor="end">owner pays</text>
+        <text x="178.6" y="112.6" text-anchor="end">day 35</text>
+        <text x="178.6" y="131.6" text-anchor="end">you get paid</text>
+        <text x="263.1" y="62.099999999999994" text-anchor="end" fill="#ff5900">payroll</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section class="statement" id="problem">
+  <div class="wrap">
+    <div class="eyebrow">The problem</div>
+    <h2>In Ontario, an owner has 28 days to pay a proper invoice, and each tier below has 7 days to pass the money on. Since January 2026, an invoice counts as proper unless the owner disputes it within 7 days. Most trade contractors still run cash from an aging report and a credit line.</h2>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid4">
+    <div class="cell"><div class="stat">70.7%</div><p>of Canadian construction businesses had cash for the next three months in Q3 2026, against 75.8% of all businesses. <span class="src">Statistics Canada</span></p></div>
+    <div class="cell"><div class="stat">28 + 7</div><p>days for the owner to pay the GC, then for the GC to pay the trade. A contract can't extend them. <span class="src">Ontario Construction Act, via OAA</span></p></div>
+    <div class="cell"><div class="stat">10%</div><p>of every progress payment is held back by statute. Ontario now requires that holdback to be released every year. <span class="src">Bennett Jones, Osler</span></p></div>
+    <div class="cell"><div class="stat hot">269</div><p>adjudications started in Ontario in FY2023, in a province with about 34,700 trade-contractor locations, so few trades use the process. <span class="src">ODACC via Mondaq; StatCan</span></p></div>
+  </div>
+</section>
+
+<section id="clock">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">The clock</div>
+      <h2>Check one draw against your payroll</h2>
+      <p style="margin-top:16px">Enter the day the owner received the GC's invoice that includes your work. The bar shows the latest date the law allows at each tier, and where your payroll falls.</p>
+      <p class="fine">Simplified Ontario prompt-payment rules for illustration. Disputes, notices of non-payment and contract terms can change the dates. This is not legal advice.</p>
+    </div>
+    <div>
+      <div class="form">
+        <div><label for="c-recv">Owner received GC invoice</label><input type="date" id="c-recv" value="2026-03-10"></div>
+        <div><label for="c-pay">Your next payroll</label><input type="date" id="c-pay" value="2026-04-17"></div>
+        <div><label for="c-amt">Your amount (C$)</label><input type="number" id="c-amt" value="46800" min="0" step="100"></div>
+      </div>
+      <div class="clock">
+        <div class="clockbar" id="c-bar"></div>
+        <div class="verdict" id="c-verdict"></div>
+        <p class="fine" id="c-detail"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="prototype">
+  <div class="wrap">
+    <div class="eyebrow">Prototype · synthetic data</div>
+    <h2>Larkfield Electrical's week before payroll</h2>
+    <p style="margin-top:14px;color:#d4d4d4;max-width:760px">Larkfield Electrical is a fictional 34-person contractor in Ontario. Today is April 9. Payroll runs on April 17. Step through what Proper would show the owner.</p>
+
+    <div class="app" role="application" aria-label="Proper prototype">
+      <div class="steps" role="tablist" aria-label="Prototype steps">
+        <div class="co"><b>Larkfield Electrical Ltd.</b>Fictional · 34 staff · Ontario</div>
+        <button class="step" role="tab" aria-selected="true" data-step="0"><span class="n">1</span>Payroll gap</button>
+        <button class="step" role="tab" aria-selected="false" data-step="1"><span class="n">2</span>Money legally due</button>
+        <button class="step" role="tab" aria-selected="false" data-step="2"><span class="n">3</span>Next moves</button>
+        <button class="step" role="tab" aria-selected="false" data-step="3"><span class="n">4</span>Before and after</button>
+      </div>
+      <div>
+        <div class="pane on" data-pane="0">
+          <div class="eyebrow">Thursday, April 9</div>
+          <div class="result"><span class="big" style="color:var(--orange)">C$31,500 short</span><span>for payroll on Friday, April 17, if nothing else arrives.</span></div>
+          <div class="kv">
+            <div><div class="k">Cash today</div><div class="v">C$64,700</div></div>
+            <div><div class="k">Supplier bill, Apr 15</div><div class="v">−C$12,000</div></div>
+            <div><div class="k">Payroll, Apr 17</div><div class="v">−C$84,200</div></div>
+          </div>
+          <p>Larkfield has C$88,100 owed by three general contractors and C$61,300 in holdback. Two of them are legally due before payroll, and one of those two is already late.</p>
+          <div class="navrow"><span></span><button class="btn solid" data-go="1">See what's legally due <span class="arr">→</span></button></div>
+        </div>
+
+        <div class="pane" data-pane="1">
+          <div class="eyebrow">Receivables ranked by what they do for this payroll</div>
+          <table>
+            <thead><tr><th>GC and draw</th><th>Legal date for you</th><th>Status</th><th class="amt">Amount</th></tr></thead>
+            <tbody>
+              <tr><td><b>Northbridge Builders</b><br><span class="src">Draw 7 · Riverside medical office. GC's invoice reached the owner Mar 10.</span></td><td>By Apr 14<br><span class="src">28 days + 7 days</span></td><td><span class="tag ok">Due before payroll</span><br><span class="src">Covers the whole gap. Paid 6 to 11 days late on the last 4 draws.</span></td><td class="amt">C$46,800</td></tr>
+              <tr><td><b>Kestrel Construction</b><br><span class="src">Draw 3 · Elm St. school addition. Owner paid the GC Mar 19.</span></td><td>Was due Mar 26<br><span class="src">7 days after the GC was paid</span></td><td><span class="tag hot">14 days past legal date</span><br><span class="src">Covers 71% of the gap.</span></td><td class="amt">C$22,400</td></tr>
+              <tr><td><b>Halden Group</b><br><span class="src">Draw 2 · Queensway retail. Reached the owner Mar 28.</span></td><td>By May 2</td><td><span class="tag dim">After payroll</span></td><td class="amt">C$18,900</td></tr>
+              <tr><td><b>Holdback, Northbridge project</b><br><span class="src">10% accrued since the contract anniversary.</span></td><td>Annual release Jun 30</td><td><span class="tag dim">After payroll</span></td><td class="amt">C$61,300</td></tr>
+            </tbody>
+          </table>
+          <p class="fine">Dates follow simplified Ontario prompt-payment timelines. Proper shows dates and documents. The owner decides what to do with them.</p>
+          <div class="navrow"><button class="btn" data-go="0">← Back</button><button class="btn solid" data-go="2">Choose next moves <span class="arr">→</span></button></div>
+        </div>
+
+        <div class="pane" data-pane="2">
+          <div class="eyebrow">Pick what you would do. Step 4 shows the effect.</div>
+          <div class="actions">
+            <label class="act"><input type="checkbox" id="a-remind" checked><span><span class="t">Send a statutory reminder to Northbridge</span><br><span class="d">Ask them to confirm when the owner paid. If the owner paid on time, your money is due by April 14.</span>
+              <div class="draft">"Hi Dana, our draw 7 (C$46,800) was in your March 10 invoice to the owner. Under the prompt-payment rules, our payment is due within 7 days of the owner paying you. Could you confirm the owner's payment date? Thanks, Sam."</div></span></label>
+            <label class="act"><input type="checkbox" id="a-kestrel"><span><span class="t">Chase Kestrel and prepare an adjudication notice</span><br><span class="d">Kestrel is 14 days past its legal date. Proper fills in the notice from the invoice and subcontract. You decide whether to send it.</span></span></label>
+            <label class="act"><input type="checkbox" id="a-early"><span><span class="t">Get paid early on Northbridge draw 7</span><br><span class="d">A lending partner advances C$46,098 tomorrow for a 1.5% fee (C$702), and collects from Northbridge later. This is the planned second product.</span></span></label>
+          </div>
+          <div class="navrow"><button class="btn" data-go="1">← Back</button><button class="btn solid" data-go="3">See the effect <span class="arr">→</span></button></div>
+        </div>
+
+        <div class="pane" data-pane="3">
+          <div class="eyebrow">Cash from April 9 to payroll on April 17</div>
+          <div class="result"><span class="big" id="r-big"></span><span id="r-text"></span></div>
+          <svg class="chart" id="r-chart" viewBox="0 0 640 250" role="img" aria-label="Cash balance chart"></svg>
+          <p class="fine" id="r-note"></p>
+          <div class="navrow"><button class="btn" data-go="2">← Change the moves</button><a class="btn" href="#market">Next: market size <span class="arr">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="market">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Market size · my scenario model, not a published forecast</div>
+      <h2>The Canadian market is small. It gets large only with U.S. expansion and early-pay revenue.</h2>
+      <p style="margin-top:16px">Buyers are specialty trade contractors with 10 to 99 staff: 18,436 locations in Canada (June 2026) and 88,062 U.S. firms (2022). The pool is buyers × fit × paid adoption × price, plus early-payment fees. Fit, adoption, price and take rate are my assumptions, which is why the range is wide.</p>
+      <p>In the base case Canada is about C$6M today. Reaching C$1M ARR would take 278 Ontario customers, about 11% of the contractors who fit.</p>
+      <div class="seg3" role="group" aria-label="Scenario"><button aria-pressed="false" data-case="low">Low</button><button aria-pressed="true" data-case="base">Base</button><button aria-pressed="false" data-case="high">High</button></div>
+    </div>
+    <div>
+      <div class="funnel" id="funnel"></div>
+      <p class="fine">North America, CAD. 2040 in 2026 dollars. Workbook: Diagram_Market_Sizing.xlsx (StatCan table 33-10-1174, U.S. Census SUSB 2022).</p>
+    </div>
+  </div>
+</section>
+
+<section id="competition">
+  <div class="wrap">
+    <div class="split" style="grid-template-columns:1fr"><div style="padding-bottom:28px"><div class="eyebrow">Competition</div><h2>Funded competitors exist, and none I found tracks Canadian legal dates for the trade.</h2></div></div>
+  </div>
+  <div class="wrap comp" style="border-top:1px solid var(--line)">
+    <div class="cell"><div class="who">Siteline</div><div class="meta">US · US$18.4M incl. Menlo-led Series A (2022)</div><p>Pay applications, compliance documents and receivables tracking for trades.</p><p class="gap">Closest product and the most likely to copy this. Built around US pay apps and retainage.</p></div>
+    <div class="cell"><div class="who">Earlytrade</div><div class="meta">US, Australian origin · ~US$25M total (2026 round led by S3 Ventures, Brick &amp; Mortar)</div><p>An early-payment marketplace for subcontractors, funded through GCs.</p><p class="gap">Early pay on its own is already taken. It depends on GCs opting in.</p></div>
+    <div class="cell"><div class="who">Billd</div><div class="meta">US · US$7.3M raise led by MissionOG (Nov 2025)</div><p>Materials financing and early-pay programs for subcontractors.</p><p class="gap">Sells financing without statutory leverage. Canadian availability unverified.</p></div>
+    <div class="cell"><div class="who">GC portals</div><div class="meta">Procore (bought Levelset, 2021), Trimble Pay, Oracle Textura, GCPay</div><p>Payment workflows run by the general contractor.</p><p class="gap">They serve the GC, and a trade has to log into each one separately.</p></div>
+    <div class="cell"><div class="who">Horizontal tools</div><div class="meta">QuickBooks, Xero, Float, Chaser, Plooto</div><p>Forecasts, collections and payments for any small business.</p><p class="gap">Strong substitutes, with no construction legal dates or holdback.</p></div>
+    <div class="cell"><div class="who">Ontario niche</div><div class="meta">ConTracs, GetMarkup</div><p>Invoicing for Ontario trades that knows the prompt-payment rules.</p><p class="gap">Shows local demand and is a direct threat. Maturity not assessed.</p></div>
+  </div>
+</section>
+
+<section id="validation">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">First four weeks</div>
+      <h2>Nothing here is validated yet</h2>
+      <p style="margin-top:16px">I have not spoken to a customer about this. The first test costs close to nothing:</p>
+      <ul class="clean">
+        <li>20 interviews with owners or controllers of Ontario commercial trades, found through trade associations and construction bookkeepers.</li>
+        <li>A C$500 concierge audit for five firms. I would compute the legal date of every invoice from six months of receivables, by hand.</li>
+        <li>Go if at least 8 of 20 had a late invoice force a costly move, at least 3 pay or sign a C$300/month letter of intent, and the audits find 15% or more of receivable value past its legal date.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow">What would make me stop</div>
+      <ul class="clean">
+        <li>Trades say they won't use their statutory rights at any price because they fear losing the GC. I would then test selling compliance to GCs, or stop.</li>
+        <li>GC portals already show legal due dates for most invoices by value.</li>
+        <li>Setting up a customer's data takes more than an hour, which breaks the economics.</li>
+        <li>No lender will price early pay below about 2%. Proper would stay a smaller software business.</li>
+      </ul>
+      <div class="ctas" style="margin-top:24px"><a class="btn solid" href="Diagram_Venture_Thematic_Analysis.pdf">Read the memo <span class="arr">→</span></a><a class="btn" href="Diagram_Market_Sizing.xlsx">Download the model <span class="arr">→</span></a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="who">Abdullah Al Mneni · Business Technology Management, Toronto Metropolitan University · <a href="mailto:abdullahalmanini@outlook.com">abdullahalmanini@outlook.com</a> · <a href="https://www.linkedin.com/in/abdullah-al-mneni-554809309">LinkedIn</a> · <a href="https://github.com/abdullahmanini">GitHub</a></div>
+    <p>Built with Claude Code from my memo and market model. Visual style inspired by diagram.vc. Sources, accessed September 30 to October 23, 2026:</p>
+    <ol>
+      <li><a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3310117401">Statistics Canada, Business Counts, June 2026</a></li>
+      <li><a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3310121101">Statistics Canada, table 33-10-1211, Q3 2026</a></li>
+      <li><a href="https://oaa.on.ca/Assets/Common/Shared_Documents/Practice%20Tips/PT.10.3_V02.0_CA-PromptPayment_20260109.pdf">Ontario Association of Architects, Prompt Payment practice tip, Jan 2026</a></li>
+      <li><a href="https://www.osler.com/en/insights/blogs/construction/ontario-construction-act-amendments-now-in-effect/">Osler, Ontario Construction Act amendments, Mar 2026</a></li>
+      <li><a href="https://www.bennettjones.com/Insights/Blogs/2026/02/Updates-to-Prompt-Payment-Legislation">Bennett Jones, prompt payment updates, Feb 2026</a></li>
+      <li><a href="https://www.census.gov/data/tables/2022/econ/susb/2022-susb-annual.html">U.S. Census Bureau, SUSB 2022</a></li>
+      <li><a href="https://webiis10.mondaq.com/canada/construction-planning/1419070/odacc-2023-annual-report-key-takeaways-from-the-implementation-of-the-prompt-paymentstatutory-adjudication-regime-in-ontario">ODACC FY2023 report, via Mondaq</a></li>
+      <li><a href="https://www.businesswire.com/news/home/20220224005099/en/Siteline-Raises-$18.4M-to-Reimagine-Construction-Finance">Siteline funding, Business Wire, 2022</a></li>
+      <li><a href="https://www.vcaonline.com/news/2026060917/earlytrade-raises-25m-to-deploy-agentic-ai-across-the-construction-payments-ecosystem/">Earlytrade funding, VC Access Online, 2026</a></li>
+      <li><a href="https://fintech.global/2025/11/06/construction-fintech-billd-raises-7-3m-funding/">Billd funding, FinTech Global, 2025</a></li>
+    </ol>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var fmt = function (n) { return (n < 0 ? "−" : "") + "C$" + Math.abs(Math.round(n)).toLocaleString("en-CA"); };
+  var D = function (s) { var p = s.split("-"); return Date.UTC(+p[0], +p[1] - 1, +p[2]); };
+  var DAY = 86400000;
+  var show = function (t) { return new Date(t).toLocaleDateString("en-CA", { month: "short", day: "numeric", timeZone: "UTC" }); };
+
+  // The clock calculator
+  var recv = document.getElementById("c-recv"), pay = document.getElementById("c-pay"), amt = document.getElementById("c-amt");
+  function clock() {
+    var bar = document.getElementById("c-bar"), v = document.getElementById("c-verdict"), d = document.getElementById("c-detail");
+    if (!recv.value || !pay.value) { v.textContent = "Enter both dates."; return; }
+    var r = D(recv.value), p = D(pay.value), owner = r + 28 * DAY, you = r + 35 * DAY, notice = r + 14 * DAY;
+    var start = Math.min(r, p), end = Math.max(you, p) + 3 * DAY, span = end - start;
+    var pos = function (t) { return ((t - start) / span * 100).toFixed(2) + "%"; };
+    var edge = function (t) { var f = (t - start) / span; return f < 0.2 ? "l" : f > 0.8 ? "r" : ""; };
+    bar.innerHTML =
+      '<div class="seg" style="left:' + pos(r) + ';width:calc(' + pos(owner) + ' - ' + pos(r) + ');background:#939bda"></div>' +
+      '<div class="seg" style="left:' + pos(owner) + ';width:calc(' + pos(you) + ' - ' + pos(owner) + ');background:#9b3a3c"></div>' +
+      '<div class="mk" style="left:' + pos(r) + '"><span class="' + edge(r) + '">' + show(r) + ' invoice in</span></div>' +
+      '<div class="mk up" style="left:' + pos(owner) + '"><span class="' + edge(owner) + '">' + show(owner) + ' owner pays GC</span></div>' +
+      '<div class="mk" style="left:' + pos(you) + '"><span class="' + edge(you) + '">' + show(you) + ' you</span></div>' +
+      '<div class="mk pay" style="left:' + pos(p) + '"><span class="' + edge(p) + '">' + show(p) + ' payroll</span></div>';
+    var diff = Math.round((p - you) / DAY), a = Math.max(0, +amt.value || 0);
+    if (diff >= 0) { v.className = "verdict"; v.textContent = fmt(a) + " is legally due " + diff + " day" + (diff === 1 ? "" : "s") + " before payroll."; }
+    else { v.className = "verdict bad"; v.textContent = "The law allows this " + fmt(a) + " to arrive " + (-diff) + " day" + (diff === -1 ? "" : "s") + " after payroll."; }
+    d.textContent = "Owner can dispute by " + show(notice) + " (notice of non-payment). Owner pays the GC by " + show(owner) + ". By about " + show(you) + " the GC must pay you, or give you its own notice of non-payment.";
+  }
+  [recv, pay, amt].forEach(function (el) { el.addEventListener("input", clock); });
+  clock();
+
+  // Prototype stepper
+  var steps = [].slice.call(document.querySelectorAll(".step")), panes = [].slice.call(document.querySelectorAll(".pane"));
+  function go(i) {
+    steps.forEach(function (s, k) { s.setAttribute("aria-selected", k === i ? "true" : "false"); });
+    panes.forEach(function (p, k) { p.classList.toggle("on", k === i); });
+    if (i === 3) result();
+  }
+  steps.forEach(function (s) { s.addEventListener("click", function () { go(+s.dataset.step); }); });
+  [].slice.call(document.querySelectorAll("[data-go]")).forEach(function (b) { b.addEventListener("click", function () { go(+b.dataset.go); }); });
+
+  // Scenario arithmetic (synthetic): cash 64,700; supplier −12,000 Apr 15; payroll −84,200 Apr 17
+  function result() {
+    var remind = document.getElementById("a-remind").checked, kes = document.getElementById("a-kestrel").checked, early = document.getElementById("a-early").checked;
+    var events = [{ d: 9, amt: 64700, label: "Cash today" }];
+    var notes = [];
+    if (early) { events.push({ d: 10, amt: 46098, label: "Early pay, Northbridge" }); notes.push("Early pay on Northbridge draw 7 arrives Apr 10 net of the C$702 fee."); }
+    else if (remind) { events.push({ d: 14, amt: 46800, label: "Northbridge, legal date" }); notes.push("Assumes the reminder gets Northbridge to pay on its legal date, Apr 14. Their history says they might not."); }
+    else { notes.push("Northbridge pays 6 to 11 days late, as on its last four draws, so after payroll."); }
+    if (kes) { events.push({ d: 13, amt: 22400, label: "Kestrel, after chase" }); notes.push("Assumes Kestrel pays by Apr 13 once it sees the adjudication notice is ready."); }
+    events.push({ d: 15, amt: -12000, label: "Supplier" });
+    var before = events.reduce(function (s, e) { return s + e.amt; }, 0);
+    events.push({ d: 17, amt: -84200, label: "Payroll" });
+    var end = before - 84200;
+    var big = document.getElementById("r-big"), txt = document.getElementById("r-text");
+    if (end >= 0) { big.style.color = "var(--ok)"; big.textContent = fmt(end) + " left"; txt.textContent = "after payroll on April 17."; }
+    else { big.style.color = "var(--orange)"; big.textContent = fmt(-end) + " short"; txt.textContent = "on payroll day, April 17."; }
+    document.getElementById("r-note").textContent = notes.join(" ") + " All figures are synthetic.";
+    draw(events);
+  }
+  ["a-remind", "a-kestrel", "a-early"].forEach(function (id) { document.getElementById(id).addEventListener("change", function () { if (panes[3].classList.contains("on")) result(); }); });
+
+  function series(events) {
+    var bal = 0, pts = [];
+    for (var d = 9; d <= 17; d++) { events.filter(function (e) { return e.d === d; }).forEach(function (e) { bal += e.amt; }); pts.push({ d: d, v: bal }); }
+    return pts;
+  }
+  function draw(events) {
+    var svg = document.getElementById("r-chart"), W = 640, H = 250, L = 64, R = 20, T = 24, B = 40;
+    var base = series([{ d: 9, amt: 64700 }, { d: 15, amt: -12000 }, { d: 17, amt: -84200 }]);
+    var pts = series(events);
+    var vals = pts.concat(base).map(function (p) { return p.v; });
+    var STEP = 25000, max = Math.ceil(Math.max.apply(null, vals) / STEP) * STEP, min = Math.min(0, Math.floor(Math.min.apply(null, vals) / STEP) * STEP);
+    var x = function (d) { return L + (d - 9) / 8 * (W - L - R); }, y = function (v) { return T + (max - v) / (max - min) * (H - T - B); };
+    var h = '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+    for (var g = min; g <= max; g += STEP) { h += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(g) + '" y2="' + y(g) + '" stroke="' + (g === 0 ? "#000" : "#e5e5e5") + '"/><text x="' + (L - 8) + '" y="' + (y(g) + 4) + '" font-size="11" text-anchor="end" fill="#525252">' + (g / 1000) + 'k</text>'; }
+    for (var d = 9; d <= 17; d++) h += '<text x="' + x(d) + '" y="' + (H - 16) + '" font-size="11" text-anchor="middle" fill="#525252">Apr ' + d + '</text>';
+    var path = function (ps) { var s = "M" + x(9) + " " + y(ps[0].v); for (var i = 1; i < ps.length; i++) s += " H" + x(ps[i].d) + " V" + y(ps[i].v); return s; };
+    h += '<path d="' + path(base) + '" fill="none" stroke="#939bda" stroke-width="2" stroke-dasharray="6 5"/>';
+    h += '<path d="' + path(pts) + '" fill="none" stroke="#000" stroke-width="2.5"/>';
+    var lb = base[base.length - 1].v, lp = pts[pts.length - 1].v;
+    h += '<line x1="' + x(17) + '" x2="' + x(17) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="#ff5900" stroke-dasharray="4 4"/>';
+    h += '<circle cx="' + x(17) + '" cy="' + y(lb) + '" r="5" fill="#fff" stroke="#939bda" stroke-width="2"/>';
+    h += '<circle cx="' + x(17) + '" cy="' + y(lp) + '" r="6" fill="' + (lp < 0 ? "#ff5900" : "#1d6b45") + '"/>';
+    h += '<text x="' + (x(17) - 6) + '" y="' + (T - 8) + '" font-size="11" text-anchor="end" fill="#ff5900">payroll</text>';
+    h += '<line x1="' + L + '" x2="' + (L + 22) + '" y1="' + (T - 11) + '" y2="' + (T - 11) + '" stroke="#000" stroke-width="2.5"/><text x="' + (L + 28) + '" y="' + (T - 7) + '" font-size="11" fill="#000">your moves</text>';
+    h += '<line x1="' + (L + 110) + '" x2="' + (L + 132) + '" y1="' + (T - 11) + '" y2="' + (T - 11) + '" stroke="#939bda" stroke-width="2" stroke-dasharray="6 5"/><text x="' + (L + 138) + '" y="' + (T - 7) + '" font-size="11" fill="#525252">if nothing changes (−C$31,500)</text>';
+    svg.innerHTML = h;
+  }
+
+  // Market toggle (values from Diagram_Market_Sizing.xlsx, North America, CAD)
+  var M = {
+    low:  { buyers: 101889, tam: 244.5, sam: 73.4, pool: 7.3, y2040: 13.6 },
+    base: { buyers: 108230, tam: 389.6, sam: 175.3, pool: 39.4, y2040: 141.6 },
+    high: { buyers: 113757, tam: 682.5, sam: 409.5, pool: 215.0, y2040: 813.0 }
+  };
+  function market(c) {
+    var m = M[c], top = 813;
+    var rows = [["TAM: every buyer pays", m.tam], ["SAM: contractors who fit", m.sam], ["2026 pool after paid adoption", m.pool], ["2040 pool (2026 dollars)", m.y2040]];
+    var h = '<div class="frow"><span>Buyers, 10 to 99 staff</span><div></div><span class="val">' + m.buyers.toLocaleString("en-CA") + '</span></div>';
+    rows.forEach(function (r, i) { h += '<div class="frow' + (i === 2 ? " key" : "") + '"><span>' + r[0] + '</span><div><div class="fbar" style="width:' + Math.max(0.6, r[1] / top * 100) + '%"></div></div><span class="val">C$' + (r[1] >= 100 ? Math.round(r[1]) : r[1].toFixed(1)) + 'M</span></div>'; });
+    document.getElementById("funnel").innerHTML = h;
+    [].slice.call(document.querySelectorAll(".seg3 button")).forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.case === c ? "true" : "false"); });
+  }
+  [].slice.call(document.querySelectorAll(".seg3 button")).forEach(function (b) { b.addEventListener("click", function () { market(b.dataset.case); }); });
+  market("base");
+})();
+</script>
+</body>
+</html>
